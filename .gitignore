@@ -30,6 +30,9 @@ build/Release
 # https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
 node_modules
 
+# Mac files
+.DS_STORE
+
 # Optional npm cache directory
 .npm
 
@@ -45,6 +48,3 @@ app/**/*.js
 app/**/*.map
 test/**/*.js
 test/**/*.map
-
-# Mac .DS_Store files
-.DS_Store
