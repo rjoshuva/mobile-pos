@@ -1,32 +1,22 @@
 let content = document.getElementsByClassName("content")[0];
-let welcomeText = document.getElementById("welcomeText");
+let titleText = document.getElementById("titleText");
 let name = decodeURI(getCookie("login_name"));
 let level = decodeURI(getCookie("level"));
 
-level = 2;
-name = "{ NAME }";
+let employeesExist = false;
 
-welcomeText.textContent = "Welcome Back, " + name + "! What would you like to do next?";
+if (employeesExist)
+	titleText.textContent = "Create a new employee:";
+else
+	titleText.textContent = "Please create your first employee:";
 
-content.appendChild(createButton("Start Transaction", () => { deny(); }));
-content.appendChild(document.createElement("br"));
+$("#saveUser").click(() => {
+	let firstName = $("#firstName").val();
+	let lastName = $("#lastName").val();
+	let password = $("#password").val();
 
-if (level >= 2) // General Manager
-{
-	content.appendChild(createButton("Create Employee", () => { deny(); }));
-	content.appendChild(document.createElement("br"));
-}
-
-if (level >= 1) // Shift Manager
-{
-	content.appendChild(createButton("Sales Report: Product", () => { deny(); }));
-	content.appendChild(document.createElement("br"));
-
-	content.appendChild(createButton("Sales Report: Cashier", () => { deny(); }));
-	content.appendChild(document.createElement("br"));
-}
-
-content.appendChild(createButton("Logout", () => { redirectTo("login.html"); }));
+	saveUser(firstName, lastName, password);
+});
 
 function createButton(text, clickFunc)
 {
@@ -36,9 +26,14 @@ function createButton(text, clickFunc)
 	return newButton;
 }
 
-function deny()
+function saveUser(firstName, lastName, password)
 {
-	alert("Functionality Not Available", "This functionality has not been implemented yet.");
+	let userObj = {};
+	userObj.first_name = firstName;
+	userObj.last_name = lastName;
+	userObj.password = password;
+
+	alert(JSON.stringify(userObj));
 }
 
 function redirectTo(url)
