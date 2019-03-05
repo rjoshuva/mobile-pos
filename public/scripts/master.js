@@ -1,3 +1,5 @@
+const backendURL = "https://mobile-reg.herokuapp.com";
+
 // AJAX
 function ajaxGet(resourceRelativeUri, callback) {
 	return ajax(resourceRelativeUri, "GET", null, callback);

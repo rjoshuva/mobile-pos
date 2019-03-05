@@ -1,7 +1,6 @@
 let content = document.getElementsByClassName("content")[0];
-let welcomeText = document.getElementById("welcomeText");
-let name = decodeURI(getCookie("login_name"));
-let level = decodeURI(getCookie("level"));
+let name = decodeURI(getCookie("firstName"));
+let level = decodeURI(getCookie("classification"));
 
 level = 2;
 name = "{ NAME }";
@@ -11,7 +10,7 @@ welcomeText.textContent = "Welcome Back, " + name + "! What would you like to do
 content.appendChild(createButton("Start Transaction", () => { deny(); }));
 content.appendChild(document.createElement("br"));
 
-if (level >= 2) // General Manager
+if (level == "General Manager")
 {
 	content.appendChild(createButton("Create Employee", () => { deny(); }));
 	content.appendChild(document.createElement("br"));
@@ -68,7 +67,8 @@ function getCookie(cname)
 	return "";
 }
 
-function setCookie(cname, cvalue, exdays) {
+function setCookie(cname, cvalue, exdays)
+{
 	var d = new Date();
 	d.setTime(d.getTime() + (exdays*24*60*60*1000));
 	var expires = "expires="+ d.toUTCString();
