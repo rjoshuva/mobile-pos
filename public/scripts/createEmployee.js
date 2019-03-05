@@ -10,12 +10,22 @@ if (employeesExist)
 else
 	titleText.textContent = "Please create your first employee:";
 
-$("#saveUser").click(() => {
-	let firstName = $("#firstName").val();
-	let lastName = $("#lastName").val();
-	let password = $("#password").val();
+$(document).ready(() => {
 
-	saveUser(firstName, lastName, password);
+	/*
+	GET TEST
+	$.get(backendURL + "/api/employee", (result) => {
+		alert(result);
+	});
+	*/
+
+	$("#saveUser").click(() => {
+		let firstName = document.getElementById("firstName").value;
+		let lastName = document.getElementById("lastName").value;
+		let password = document.getElementById("password").value;
+	
+		saveUser(firstName, lastName, password);
+	});
 });
 
 function createButton(text, clickFunc)
@@ -28,17 +38,49 @@ function createButton(text, clickFunc)
 
 function saveUser(firstName, lastName, password)
 {
-	let userObj = {};
-	userObj.first_name = firstName;
-	userObj.last_name = lastName;
-	userObj.password = password;
+	//{"lastName": "Holt", "firstName": "Steve", "classification": "Jock", "password": "bigyeet101"}'
 
-	alert(JSON.stringify(userObj));
-}
+	/*
+	$.post(backendURL + "/api/employee",
+	{
+		lastName: lastName,
+		firstName: firstName,
+		classification: "General Manager",
+		active: "1",
+		password: password
+	}, function (data, callbackResponse) {
+		console.log("Status: " + callbackResponse);
+		if (callbackResponse
+			&& callbackResponse.status
+			&& (callbackResponse.status >= 200)
+			&& (callbackResponse.status < 300))
+		{
+			setCookie("firstName", firstName);
+			setCookie("classification", saveUserRequest.classification);
+			location.href = "home.html";
+		}
+	});*/
 
-function redirectTo(url)
-{
-	location.href = url;
+	let newEmployeeData = {
+		lastName: lastName,
+		firstName: firstName,
+		classification: "General Manager",
+		active: "1",
+		password: password
+	}
+
+	$.ajax({
+		type: "POST",
+		cache: "FALSE",
+		dataType: "text",
+		//contentType: "application/json",
+		url: backendURL + "/api/employee",
+		data: newEmployeeData,
+		complete: (xhr, statusText) => {
+			//console.log(xhr);
+			console.log(statusText);
+		}
+	});
 }
 
 function getCookie(cname)
@@ -63,7 +105,8 @@ function getCookie(cname)
 	return "";
 }
 
-function setCookie(cname, cvalue, exdays) {
+function setCookie(cname, cvalue, exdays)
+{
 	var d = new Date();
 	d.setTime(d.getTime() + (exdays*24*60*60*1000));
 	var expires = "expires="+ d.toUTCString();
