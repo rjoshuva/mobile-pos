@@ -1,46 +1,44 @@
 $(document).ready(() => {
-	$.get(backendURL + "/api/employee", (result) => {
-		if (result.length <= 0)
-		{
-			alert("No Employees Found! Redirecting to Employee Create Page.");
-			location.href = "createEmployee.html";
-		}
-	});
+    $.get(backendURL + "/api/employee", (result) => {
+        if (result.length <= 0) {
+            alert("No Employees Found! Redirecting to Employee Create Page.");
+            location.href = "createEmployee.html";
+        }
+    });
 
-	$("#login").click(() => {
-		let firstName = document.getElementById("firstName").value;
-		let lastName = document.getElementById("lastName").value;
-		let password =  document.getElementById("password").value;
+    $("#login").click(() => {
+        let id = document.getElementById("userid").value;
+        let password = document.getElementById("password").value;
 
-		let hash = sha256.create();
-		hash.update(password);
-		let hashedPasswordAttempt = hash.hex();
-	
-		tryLogin(firstName, lastName, hashedPasswordAttempt);
-	});
+        let hash = sha256.create();
+        hash.update(password);
+        let hashedPasswordAttempt = hash.hex();
 
-	$("#createEmployee").click(() => {
-		location.href = "createEmployee.html";
-	});
+        tryLogin(id, hashedPasswordAttempt);
+    });
+
+    $("#createEmployee").click(() => {
+        location.href = "createEmployee.html";
+    });
 });
 
-function tryLogin(firstName, lastName, passwordAttempt)
-{
-	$.get(backendURL + "/api/employee", (data) => {
-		let matchingEmployee = null;
+function tryLogin(userID, passwordAttempt) {
+    $.get(backendURL + "/api/employee", (data) => {
+        let matchingEmployee = null;
 
-		$.each(data, (index, employee) => {
-			if(employee.firstName == firstName && employee.lastName == lastName && employee.password == passwordAttempt)
-				matchingEmployee = employee;
-		});
+        $.each(data, (index, employee) => {
+            if (employee.userID === userID && employee.password === passwordAttempt) {
+                matchingEmployee = employee;
+            }
+        });
 
-		if (matchingEmployee != null)
-		{
-			setCookie("firstName", matchingEmployee.firstName);
-			setCookie("classification", matchingEmployee.classification);
-			location.href = "main.html";
-		}
-		else
-			alert("Incorrect First Name, Last Name, or Password!");
-	});
+        if (matchingEmployee !== null) {
+            setCookie("firstName", matchingEmployee.firstName);
+            setCookie("classification", matchingEmployee.classification);
+            location.href = "main.html";
+        } else {
+            alert("Incorrect First Name, Last Name, or Password!");
+        }
+    });
 }
+
