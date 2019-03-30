@@ -11,7 +11,7 @@ var ViewNameLookup;
 })(ViewNameLookup = exports.ViewNameLookup || (exports.ViewNameLookup = {}));
 var RouteLookup;
 (function (RouteLookup) {
-    RouteLookup["ProductListing"] = "/";
+    RouteLookup["ProductListing"] = "/productListing";
     RouteLookup["ProductDetail"] = "/productDetail";
     RouteLookup["ProductIdParameter"] = "/:productId";
     RouteLookup["API"] = "/api";
