@@ -1,0 +1,19 @@
+h1{
+    white-space: 30px;
+    margin: 10px;
+    text-align: center;
+    font-family: 'Roboto';
+}
+
+h2{
+    white-space: 20px;
+    margin: 10px;
+    text-align: center;
+    font-family: 'Roboto';
+}
+
+p{
+    font-family: 'Roboto';
+    font-size: 15px;
+    text-align: center;
+}
