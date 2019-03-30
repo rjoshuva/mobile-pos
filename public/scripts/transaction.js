@@ -16,21 +16,18 @@ $(document).ready(() => {
         checkOut();
     });
 
+    //getItems();
+
     let itemList = document.getElementById("itemList");
-    for(let i = 0; i < 60; i++)
-    {
-        // Used to generate random 
-        let randIndex = Math.floor(Math.random() * (items.length));
-        itemList.appendChild(generateItemBox(items[randIndex]));
-    }
+
+    Object.values(products).forEach((product) => {
+        itemList.appendChild(generateItemBox(product));
+    });
 });
 
 function getItems()
 {
-    $.getJSON("server/api/",
-    {
-        request: "current_items"
-    }, (data) => {
+    $.getJSON(backendURL + "/api/product", (data) => {
         console.log(data);
     });
 }
@@ -67,12 +64,6 @@ function generateItemBox(itemObj)
     price.className = "price";
     price.textContent = "$" + itemObj.price;
 
-    if (itemObj.name == "Big Yoshi")
-    {
-        itemBox.style.borderColor = "red";
-        itemBox.style.borderStyle = "dashed";
-    }
-
     itemBox.appendChild(title);
     itemBox.appendChild(image);
     itemBox.appendChild(price);
@@ -80,66 +71,3 @@ function generateItemBox(itemObj)
     itemBox.onclick = () => { openQuantityWindow(itemObj) };
     return itemBox;
 }
-
-// Test Items - Will be retrieved from server later
-var items = [
-{
-    id: "1",
-    name: "Tim Allen",
-    image: "allen.jpg",
-    price: "49.99"
-},
-{
-    id: "2",
-    name: "Mandark",
-    image: "mandark.jpg",
-    price: "19.99"
-},
-{
-    id: "3",
-    name: "Chowder",
-    image: "chowder.jpg",
-    price: "13.99"
-},
-{
-    id: "4",
-    name: "Cactus",
-    image: "dancing cactus.gif",
-    price: "8.99"
-},
-{
-    id: "5",
-    name: "Patrick",
-    image: "patrick.png",
-    price: "18.99"
-},
-{
-    id: "6",
-    name: "Josh Redgrove",
-    image: "josh.jpg",
-    price: "32.99"
-},
-{
-    id: "7",
-    name: "Big Yoshi",
-    image: "big_yoshi.png",
-    price: "31.99"
-},
-{
-    id: "8",
-    name: "Brown",
-    image: "brown.gif",
-    price: "87.99"
-},
-{
-    id: "9",
-    name: "Scoot",
-    image: "scoot.jpg",
-    price: "13.37"
-},
-{
-    id: "10",
-    name: "Yoshi",
-    image: "yoshi.jpeg",
-    price: "10.07"
-}];

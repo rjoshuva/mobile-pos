@@ -8,7 +8,7 @@ $(document).ready(() => {
 
 	welcomeText.textContent = "Welcome Back, " + name + "! What would you like to do next?";
 
-	content.appendChild(createButton("Start Transaction", () => { deny(); }));
+	content.appendChild(createButton("Start Transaction", () => { location.href = "transaction.html"; }));
 	content.appendChild(document.createElement("br"));
 
 	if (classification == "General Manager")
