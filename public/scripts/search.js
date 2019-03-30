@@ -1,6 +1,6 @@
 function search_function() {
-  // Declare variables
-  var input, filter, ul, li, a, i, txtValue;
+
+  var input, filter, itemList, item, h, i, txtValue;
   input = document.getElementById('searchInput');
   filter = input.value.toUpperCase();
   itemList = document.getElementById("itemList");
@@ -12,7 +12,6 @@ function search_function() {
     txtValue = h.textContent;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       item[i].style.display = "";
-	  console.log("item found");
     } else {
       item[i].style.display = "none";
     }
