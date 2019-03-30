@@ -144,8 +144,9 @@ function checkOut()
     let sendCart = JSON.parse(JSON.stringify(cartItems));
 
     sendCart.forEach((item) => {
-        delete item.image;
         delete item.name;
+        delete item.desc;
+        delete item.image;
         delete item.price;
     });
 
