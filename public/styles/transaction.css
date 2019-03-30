@@ -123,6 +123,7 @@ h2 {
 
 #quantityDiv p {
     margin: 10px auto;
+    max-width: 70vw;
 }
 
 /* Shopping Cart Modal */

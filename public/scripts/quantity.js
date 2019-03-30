@@ -5,6 +5,7 @@ function openQuantityWindow(item)
     document.getElementById("cartContainer").style.display = "none";
     document.getElementById("quantityTitle").textContent = item.name;
     document.getElementById("quantityImg").src = "images/" + item.image;
+    document.getElementById("quantityDesc").innerText = item.desc;
     document.getElementById("quantityNum").textContent = 1;
     document.getElementById("increaseQuantity").onclick = () => { changeQuantity(1, item); }
     document.getElementById("decreaseQuantity").onclick = () => { changeQuantity(-1, item); }
