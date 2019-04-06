@@ -36,11 +36,14 @@ app.use(lusca.xssProtection(true));
 // 	}
 // }));
 
+app.get('/', function(req, res) {
+	res.sendFile(path.join(__dirname, "../public/login.html"));
+});
+
 app.use(express.static(path.join(__dirname, "../public")));
 
 fileSystem.readdirSync(__dirname + "/routes").forEach(function (routeConfig) {
 	if (routeConfig.substr(-3) === ".js") {
-		console.log("bleh");
 		const route = require(__dirname + "/routes/" + routeConfig);
 		route.routes(app);
 	}

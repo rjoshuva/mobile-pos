@@ -11,13 +11,14 @@ else
     titleText.textContent = "Please create your first employee:";
 
 $(document).ready(() => {
+	let titleText = document.getElementById("titleText");
 
-    /*
-    GET TEST
-    $.get(backendURL + "/api/employee", (result) => {
-        alert(result);
-    });
-    */
+	$.get(backendURL + "/api/employee", (result) => {
+		if (result.length > 0)
+			titleText.textContent = "Create a new employee:";
+		else
+			titleText.textContent = "Please create your first employee:";
+	});
 
     $("#saveUser").click(() => {
         let firstName = document.getElementById("firstName").value;
@@ -104,4 +105,32 @@ function setCookie(cname, cvalue, exdays) {
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     var expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function saveUser(firstName, lastName, password)
+{
+	let newEmployeeData = {
+		lastName: lastName,
+		firstName: firstName,
+		classification: "General Manager", // Only generating GMs for now
+		active: "1",
+		password: password
+	}
+
+	$.ajax({
+		type: "POST",
+		cache: "FALSE",
+		dataType: "text",
+		//contentType: "application/json",
+		url: backendURL + "/api/employee",
+		data: newEmployeeData,
+		complete: (xhr, statusText) => {
+			if (statusText == "success")
+			{
+				setCookie("firstName", firstName);
+				setCookie("classification", newEmployeeData.classification);
+				location.href = "main.html";
+			}
+		}
+	});
 }

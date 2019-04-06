@@ -1,0 +1,85 @@
+h1{
+    white-space: 30px;
+    margin: 10px;
+    text-align: center;
+    font-family: 'Roboto';
+}
+
+h2{
+    white-space: 20px;
+    margin: 10px;
+    text-align: center;
+    font-family: 'Roboto';
+}
+
+p{
+    font-family: 'Roboto';
+    font-size: 15px;
+    text-align: center;
+}
+
+a:link, a:visited, {
+    font-family: 'Roboto';
+    font-size: 15px;
+    text-align: center;
+    color:white;
+    text-decoration: none;
+    cursor: none;
+}
+
+.dropdown {
+  width: 50%;
+  border: 0;
+  padding: 10px;
+  color: #ffffff;
+  font-size: 15px;
+  cursor: pointer;
+  margin: 0 0 15px;
+  padding: 15px;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #cf202e;
+  margin: auto;
+}
+
+.dropdown-content {
+  display: none;
+  width: auto;
+  border: 5;
+  border-color: black;
+  color: #ffffff;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 5px;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #cf202e;
+  margin: auto;
+  font-family: 'Roboto';
+  font-size: 15px;
+  text-align: center;
+}
+
+.dropdown .dropdown-content:hover {
+  display: none;
+  position: relative;
+  align: center;
+  background: #eb606c !important;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  align: center;
+  background: inherit;
+}
+
+iframe {
+  border-style: solid;
+  display:block;
+  align: center;
+  width: 80%;
+  margin: auto;
+  height: 400px;
+}
