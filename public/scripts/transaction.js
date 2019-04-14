@@ -64,10 +64,17 @@ function generateItemBox(itemObj)
     price.className = "price";
     price.textContent = "$" + itemObj.price;
 
+	let id = document.createElement("p");
+	id.className = "id";
+	id.textContent = itemObj.id;
+	id.setAttribute("hidden", "");
+	
     itemBox.appendChild(title);
     itemBox.appendChild(image);
     itemBox.appendChild(price);
-
+	itemBox.appendChild(id);
+	
     itemBox.onclick = () => { openQuantityWindow(itemObj) };
+	itemBox.open = () => { openQuantityWindow(itemObj) } ;
     return itemBox;
 }
